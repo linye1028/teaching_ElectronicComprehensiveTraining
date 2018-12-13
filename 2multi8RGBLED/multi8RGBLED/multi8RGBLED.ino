@@ -11,6 +11,7 @@ void setup() {
 }
 unsigned char LED=0x01;
 char COLOR=0x01;
+unsigned long preMillis=0;
 void loop() {
   // put your main code here, to run repeatedly:
 	char i_light=0;
@@ -18,30 +19,38 @@ void loop() {
 	digitalWrite(pin_R,LOW);
 	while(1)
 	{	
-		if(dir==1)
+		if(millis()-preMillis>=100)
 		{
-			i_light++;
-			if(i_light==7)
-				dir=0;
-		}
-		else if(dir==0)
-		{
-			i_light--;
-			if(i_light==0)
+			preMillis=millis();
+			if(dir==1)
 			{
-				dir=1;	
-				COLOR++;
-				if(COLOR>6)
-					COLOR=0;
+				i_light++;
+				if(i_light==7)
+				{
+					dir=0;
+					COLOR++;
+					if(COLOR>6)
+						COLOR=0;			
+				}
 			}
-						
+			else if(dir==0)
+			{
+				i_light--;
+				if(i_light==0)
+				{
+					dir=1;	
+					COLOR++;
+					if(COLOR>6)
+						COLOR=0;
+				}
+							
+			}
+			LED=1<<i_light;
+			LEDout();			
 		}
-		LED=1<<i_light;
-		
-		LEDout();
-		delay(100);	
 	}
 }
+
 void LEDout()
 {
 	for(char i=0;i<=7;i++)
