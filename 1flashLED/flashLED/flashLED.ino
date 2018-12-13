@@ -5,8 +5,17 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-	digitalWrite(13,HIGH);
-	delay(500);
-	digitalWrite(13,LOW);
-	delay(500);
+ 
+	for(int i=5;i<=50;i++)
+	{
+		analogWrite(13,i);
+		delay(20);
+	}	
+
+	for(int i=50;i>=5;i--)
+	{
+		analogWrite(13,i);
+		delay(20);
+	}	
+
 }
