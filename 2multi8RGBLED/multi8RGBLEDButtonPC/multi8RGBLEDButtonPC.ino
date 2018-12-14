@@ -23,6 +23,9 @@ void loop() {
 	char Flag_bt1=0,Flag_bt2=0;
 	unsigned char RD[6];
 	char RD_i=0;
+	unsigned char RD_temp;
+	int interval_temp;
+	int power;
 	while(1)
 	{	
 		if(millis()-preMillis>=interval)
@@ -96,8 +99,17 @@ void loop() {
 			if(RD_temp=='m')
 			{
 				//数据接收完毕，处理数据，更新interval
-				
-				
+				//RD[0 1 2] RD_i==3  "100"
+				interval_temp=0;
+				power=1;
+				for(char j=RD_i-1;j>=0;j--)
+				{
+					interval_temp=interval_temp+(RD[j]-'0')*power;
+					power=power*10;
+				}
+				interval=interval_temp;
+				//数据处理到此为止
+				RD_i=0;
 			}
 			else
 			{
