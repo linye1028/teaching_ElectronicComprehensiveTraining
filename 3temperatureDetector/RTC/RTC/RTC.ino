@@ -57,7 +57,7 @@ void setup ()
 void loop () 
 {
     RtcDateTime now = Rtc.GetDateTime();
-
+	
     printDateTime(now);
     Serial.println();
 
