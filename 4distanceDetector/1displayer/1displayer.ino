@@ -18,29 +18,29 @@ public:
 };
 void TM1637New::display(uint8_t BitAddr,int8_t DispData)
 {
-  int8_t SegData;
-  uint8_t PointData;
-  //SegData = coding(DispData);
-  PointData=_PointFlag<<7;
-  if(DispData == 0x7f) SegData = 0x00 + PointData;  
-  else SegData = TubeTab1[DispData] + PointData;
-  start();          //start signal sent to TM1637 from MCU
-  writeByte(ADDR_FIXED);//
-  stop();           //
-  start();          //
-  writeByte(BitAddr|0xc0);//
-  writeByte(SegData);//
-  stop();            //
-  start();          //
-  writeByte(Cmd_DispCtrl);//
-  stop();           //
+	int8_t SegData;
+	uint8_t PointData;
+	//SegData = coding(DispData);
+	PointData=_PointFlag<<7;
+	if(DispData == 0x7f) SegData = 0x00 + PointData;  
+	else SegData = TubeTab1[DispData] + PointData;
+	start();          //start signal sent to TM1637 from MCU
+	writeByte(ADDR_FIXED);//
+	stop();           //
+	start();          //
+	writeByte(BitAddr|0xc0);//
+	writeByte(SegData);//
+	stop();            //
+	start();          //
+	writeByte(Cmd_DispCtrl);//
+	stop();           //
 }
 
 TM1637New tm1637(2,3);
 
 void setup() {
-    tm1637.init();
-  tm1637.set(BRIGHT_TYPICAL);//BRIGHT_TYPICAL = 2,BRIGHT_DARKEST = 0,BRIGHTEST = 7;
+	tm1637.init();
+	tm1637.set(BRIGHT_TYPICAL);//BRIGHT_TYPICAL = 2,BRIGHT_DARKEST = 0,BRIGHTEST = 7;
 }
 
 void loop() {
