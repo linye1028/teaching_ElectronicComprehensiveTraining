@@ -9,3 +9,6 @@
 
 
 1displayer:类的继承，产生新类，修改新类，显示L和r
+2displayerDistance_LR:
+显示左右两个超声波传感器的距离值，格式为LXXX /rXXX
+用一个LED灯的闪烁快慢提示距离的远近
